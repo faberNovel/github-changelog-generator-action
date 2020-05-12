@@ -1,0 +1,14 @@
+on: [push]
+
+jobs:
+  test_action:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Generate changelog
+        uses: ./
+        with:
+          options: --token ${{ secrets.GITHUB_TOKEN }}
+      - name: Printing changelog
+        run: cat CHANGELOG.md
